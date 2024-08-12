@@ -38,6 +38,9 @@ Start the server
   npm run dev || yarn dev
 ```
 
+# Env
+Open env.sample and update it with .env and fill the required values
+
 
 ## Feedback
 
