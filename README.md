@@ -3,7 +3,7 @@
 
 Random Quote Generator is single page website using Vite (React). This website is made for task assign to me. 
 This website is deployed to 
-[here](https://github.com/arihant-getgrahak/task-12-08-2024). 
+[here](https://task-12-08-2024.vercel.app/). 
 
 ## Tech Stack
 
