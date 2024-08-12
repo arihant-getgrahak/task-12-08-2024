@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import sandClock from "./assets/sand-clock.png"
 import useFetch from "./hooks/useFetch"
+import { Helmet } from "react-helmet";
+
 
 
 interface Quote {
@@ -22,8 +24,22 @@ function App() {
     alert(alertMessage)
   }, [])
 
+
   return (
+    <>
+     <Helmet>
+        <title>Random Quote Generator</title>
+        <meta
+          name="description"
+          content="Get Random Quote on every click"
+        />
+        <meta
+          name="keywords"
+          content="Quote Random Motivation Energy"
+        />
+      </Helmet>
     <GetRandomQuote loading={loading} error={error} randomQuote={randomQuote} func={fetchApi} />
+    </>
   );
 }
 
