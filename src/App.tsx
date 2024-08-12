@@ -3,19 +3,18 @@ import sandClock from "./assets/sand-clock.png"
 import useFetch from "./hooks/useFetch"
 
 
-type Quote = {
-  _id: string;
-  content: string;
-  author: string;
-  authorSlug: string;
-  length: number;
-  tags: string[];
+interface Quote {
+  quote: string
+  author: string
+  category: string
 };
 
 function App() {
-  const api: string = "https://api.quotable.io";
+  const api: string = "https://api.api-ninjas.com/v1/quotes?category=";
 
   const { loading, error, randomQuote, fetchApi } = useFetch(api)
+
+  console.log(randomQuote)
 
 
   useEffect(() => {
@@ -29,7 +28,7 @@ function App() {
 }
 
 function GetRandomQuote(props: {
-  loading: boolean, error: string | null, randomQuote: Quote | null, func: () => void
+  loading: boolean, error: string | null, randomQuote: Quote[] | null, func: () => void
 }) {
   const { loading, error, randomQuote, func } = props
   return (
@@ -39,10 +38,12 @@ function GetRandomQuote(props: {
       )}
       {error && <p>Error: {error}</p>}
       {randomQuote && (
-        <div className="quote w-9/12 lg:w-[30%] p-5">
-          <p className='text-center text-lg'>{randomQuote.content}</p>
-          <p className='text-center mt-2 text-base'>- {randomQuote.author}</p>
-        </div>
+        randomQuote.map((quote) => (
+          <div className="quote w-9/12 lg:w-[30%] p-5">
+            <p className='text-center text-lg'>{quote.quote}</p>
+            <p className='text-center mt-2 text-base'>- {quote.author}</p>
+          </div>
+        ))
       )}
       <button className="border-2 p-2 border-red-500" onClick={func}>Get Random Quote</button>
     </div>
