@@ -12,13 +12,13 @@ interface Quote {
 function App() {
   const api: string = "https://api.api-ninjas.com/v1/quotes?category=";
 
-  const { loading, error, randomQuote, fetchApi } = useFetch(api)
+  const [loading, error, randomQuote, fetchApi] = useFetch(api)
 
   console.log(randomQuote)
 
 
   useEffect(() => {
-    const alertMessage = "Welcome to Website" + "\n" + "Made by Arihant Jain"
+    const alertMessage = "Welcome to my Website" + "\n" + "Made by Arihant Jain"
     alert(alertMessage)
   }, [])
 
@@ -28,7 +28,7 @@ function App() {
 }
 
 function GetRandomQuote(props: {
-  loading: boolean, error: string | null, randomQuote: Quote[] | null, func: () => void
+  loading: boolean | null, error: string | null, randomQuote: Quote[] | null, func: () => void
 }) {
   const { loading, error, randomQuote, func } = props
   return (

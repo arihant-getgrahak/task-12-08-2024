@@ -6,7 +6,7 @@ interface Quote {
     category: string
 };
 
-export default function useFetch(api: string) {
+export default function useFetch(api: string):[boolean, string | null, Quote[] | null, () => void] {
     const [randomQuote, setRandomQuote] = useState<Quote[] | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -34,10 +34,10 @@ export default function useFetch(api: string) {
         fetchApi()
     }, [])
 
-    return {
+    return [
         loading,
         error,
         randomQuote,
         fetchApi
-    }
+    ]
 }
