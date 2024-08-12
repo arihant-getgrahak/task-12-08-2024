@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import sandClock from "./assets/sand-clock.png"
+import useFetch from "./hooks/useFetch"
+
+
 type Quote = {
   _id: string;
   content: string;
@@ -10,28 +13,10 @@ type Quote = {
 };
 
 function App() {
-  const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const api: string = "https://api.quotable.io";
 
-  async function fetchApi() {
-    setLoading(true);
-    try {
-      const res = await fetch(`${api}/random`);
-      if (!res.ok) {
-        throw new Error('Failed to fetch the quote');
-      }
-      const data: Quote = await res.json();
-      setRandomQuote(data);
-      setError(null);
-    } catch (err: any) {
-      setError(err.message);
-      setLoading(false)
-    } finally {
-      setLoading(false);
-    }
-  }
+  const { loading, error, randomQuote, fetchApi } = useFetch(api)
+
 
   useEffect(() => {
     const alertMessage = "Welcome to Website" + "\n" + "Made by Arihant Jain"
