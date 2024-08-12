@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import sandClock from "./assets/sand-clock.png"
 type Quote = {
   _id: string;
   content: string;
@@ -33,6 +33,11 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    const alertMessage = "Welcome to Website" + "\n" + "Made by Arihant Jain"
+    alert(alertMessage)
+  }, [])
+
   return (
     <GetRandomQuote loading={loading} error={error} randomQuote={randomQuote} func={fetchApi} />
   );
@@ -44,12 +49,14 @@ function GetRandomQuote(props: {
   const { loading, error, randomQuote, func } = props
   return (
     <div className="App flex justify-center items-center flex-col h-screen gap-3">
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <img src={sandClock} alt="loading-icon" className='animate-spin w-10 h-10' />
+      )}
       {error && <p>Error: {error}</p>}
       {randomQuote && (
-        <div className="quote w-3/6">
-          <p>{randomQuote.content}</p>
-          <p className='text-center mt-2'>- {randomQuote.author}</p>
+        <div className="quote w-[30%] border-2 border-black p-5">
+          <p className='text-center text-lg'>{randomQuote.content}</p>
+          <p className='text-center mt-2 text-base'>- {randomQuote.author}</p>
         </div>
       )}
       <button className="border-2 p-2 border-red-500" onClick={func}>Get Random Quote</button>
