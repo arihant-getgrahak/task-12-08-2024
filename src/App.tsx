@@ -54,7 +54,7 @@ function GetRandomQuote(props: {
       )}
       {error && <p>Error: {error}</p>}
       {randomQuote && (
-        <div className="quote w-[30%] border-2 border-black p-5">
+        <div className="quote w-9/12 lg:w-[30%] p-5">
           <p className='text-center text-lg'>{randomQuote.content}</p>
           <p className='text-center mt-2 text-base'>- {randomQuote.author}</p>
         </div>
